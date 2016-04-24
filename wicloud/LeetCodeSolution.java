@@ -1,13 +1,25 @@
 import java.util.Arrays;
 
+/**
+ *
+ * LeetCode Solution对象 ，提供所有solution 方法
+ * @author  wicloud
+ * @date   2016-4-24
+ */
 public class Solution {
 
-	/** Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target.
-	 * Return the sum of the three integers. You may assume that each input would have exactly one solution.
+	/**
+	 * 16.  3Sum Closest 
+	 * 
+	 * Closest Given an array S of n integers, find three integers in S such that the sum is closest to a given
+	 * number, target. Return the sum of the three integers. You may assume that each input would have exactly one
+	 * solution.
 	 * 
 	 * @param nums
 	 * @param target
-	 * @return */
+	 * @return 
+	 * 
+	 * */
 	public int threeSumClosest(int[] nums, int target) {
 		Arrays.sort(nums);
 
@@ -33,34 +45,22 @@ public class Solution {
 
 	}
 
-	//超时
-	//	public int threeSumClosest(int[] nums, int target) {
-	//		int len = nums.length;
-	//		int sumClosest = nums[0] + nums[1] + nums[2];
-	//		int i = 0, j, k;
-	//		for (; i < len - 2; i++) { // 第一个数
-	//			for (j = i + 1; j < len - 1; j++) {// 第二个数
-	//				for (k = j + 1; k < len; k++) {// 第三个数
-	//					int sum = nums[i] + nums[j] + nums[k];
-	//					if (Math.abs(sumClosest - target) > Math.abs(sum - target)) {
-	//						sumClosest = sum;
-	//					}
-	//
-	//				}
-	//			}
-	//		}
-	//		return sumClosest;
-	//
-	//	}
-
-	////////////////////////////////////////////////////////////////////
-	/** @param s
-	 * @return */
+	/**
+	 *  344	Reverse String  	59.9%		Easy
+	 * @param s
+	 * @return
+	 */
 	public String reverseString(String s) {
 		return new StringBuffer(s).reverse().toString();
 	}
 
-	public String reverseStringVowes(String s) {
+	/**
+	 *
+	 * 345	Reverse Vowels of a String   37.5%		Easy
+	 * @param s
+	 * @return
+	 */
+	public String reverseVowels(String s) {
 		char[] sArr = s.toCharArray();
 		int i = 0;
 		int j = sArr.length - 1;
@@ -92,4 +92,5 @@ public class Solution {
 		return c == 'A' || c == 'a' || c == 'E' || c == 'e' || c == 'i' || c == 'I' || c == 'o' || c == 'O' || c == 'u'
 				|| c == 'U';
 	}
+
 }
