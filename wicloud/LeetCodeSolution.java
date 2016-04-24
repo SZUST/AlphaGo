@@ -21,8 +21,8 @@ public class Solution {
 	 * 
 	 * */
 	public int threeSumClosest(int[] nums, int target) {
+		//超时 算法有问题
 		Arrays.sort(nums);
-
 		int len = nums.length;
 		int sumClosest = nums[0] + nums[1] + nums[2];
 		int i = 0, j, k;
@@ -33,7 +33,6 @@ public class Solution {
 					if (Math.abs(sumClosest - target) > Math.abs(sum - target)) {
 						sumClosest = sum;
 					}
-
 					if (sum - target >= 0) {
 						break;
 					}
