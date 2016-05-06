@@ -9,6 +9,58 @@ import java.util.Arrays;
 public class Solution {
 
 	/**
+	 * 6. ZigZag Conversion
+	 * The string "PAYPALISHIRING" is written in a zigzag pattern on a given 
+	 * number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+	 * 写 w
+	 * @param s
+	 * @param numRows
+	 * @return
+	 * 1158 / 1158 test cases passed.  Runtime: 14 ms  Your runtime beats 40.21% of javasubmissions
+	 */
+	public String convert(String s, int numRows) {
+		if (1 == numRows) {
+			return s;
+		}
+		int len = s.length();
+		StringBuffer[] arrsBuffers = new StringBuffer[numRows];
+		int pos = 0, row = 0;
+		boolean add = true;
+		while (pos < len) {
+			//			System.out.println("row= " + row + "  pos = " + pos);
+
+			if (arrsBuffers[row] == null) {
+				arrsBuffers[row] = new StringBuffer();
+			}
+			arrsBuffers[row].append(s.charAt(pos));
+			pos++;
+			if (add) {
+				if (row == numRows - 1) {
+					row--;
+					add = false;
+					continue;
+				}
+				row++;
+			} else {
+				if (row == 0) {
+					row++;
+					add = true;
+					continue;
+				}
+				row--;
+			}
+		}
+		StringBuffer rs = new StringBuffer();
+		for (int i = 0; i < numRows; i++) {
+			if (arrsBuffers[i] == null) {
+				break;
+			}
+			rs.append(arrsBuffers[i]);
+		}
+		return rs.toString();
+	}
+
+	/**
 	* 
 	* 2. Add Two Numbers   Total Accepted: 138344 Total Submissions: 602371 Difficulty: Medium
 	* 
