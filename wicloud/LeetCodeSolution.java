@@ -5,8 +5,73 @@ import java.util.Arrays;
  * LeetCode Solution对象 ，提供所有solution 方法
  * @author  wicloud
  * @date   2016-4-24
+ * 
+ * Runtime: 4 ms   1047 / 1047 test cases passed
+ * Your runtime beats 35.97% of javasubmissions
  */
 public class Solution {
+
+	/**
+	 * 8. String to Integer (atoi)
+	 * Implement atoi to convert a string to an integer.
+	 * @param str
+	 * @return
+	 */
+	public int myAtoi(String str) {
+		if (null == str) {
+			return 0;
+		}
+		str = str.trim();
+		boolean isPosivit = true;
+		if (str.startsWith("-")) {
+			str = str.substring(1);
+			isPosivit = false;
+		} else if (str.startsWith("+")) {
+			str = str.substring(1);
+		}
+		if ("".equals(str)) {
+			return 0;
+		}
+		short i = 0;
+		char c = '0';
+		long l = 0;
+		while (i < str.length()) {
+			c = str.charAt(i);
+			if (c >= '0' && c <= '9') {
+				if (isPosivit) {
+					l = l * 10 + (c - '0'); //正数
+				} else {
+					l = l * 10 + (c - '0') * (-1);//负数
+				}
+				if (l > Integer.MAX_VALUE) {
+					return Integer.MAX_VALUE;
+				} else if (l < Integer.MIN_VALUE) {
+					return Integer.MIN_VALUE;
+				}
+				i++;
+			} else {
+				break;
+			}
+		}
+		return (int) l;
+
+	}
+
+	/**
+	 * 7. Reverse Integer
+	 * @param x
+	 * @return
+	 *  * Your runtime beats 45.49% of javasubmissions
+	 * Runtime: 2 ms
+	 */
+	public int reverse(int x) {
+		long res = 0;
+
+		for (; x != 0; x /= 10) {
+			res = res * 10 + x % 10;
+		}
+		return res > Integer.MAX_VALUE || res < Integer.MIN_VALUE ? 0 : (int) res;
+	}
 
 	/**
 	 * 6. ZigZag Conversion
