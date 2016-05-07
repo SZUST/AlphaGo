@@ -5,17 +5,50 @@ import java.util.Arrays;
  * LeetCode Solution对象 ，提供所有solution 方法
  * @author  wicloud
  * @date   2016-4-24
- * 
- * Runtime: 4 ms   1047 / 1047 test cases passed
- * Your runtime beats 35.97% of javasubmissions
  */
 public class Solution {
+
+	/**
+	 * 9. Palindrome Number 
+	 * Determine whether an integer is a palindrome. Do this without extra space.
+	 * @param x
+	 * @return
+	 * 
+	 * Your runtime beats 94.16% of javasubmissions.
+	 * 11506 / 11506 test cases passed.
+	 * Runtime: 10 ms
+	 */
+	public boolean isPalindrome(int x) {
+		if (x < 0) {
+			return false;
+		}
+		int a = x / 10;
+		int b = x % 10;
+		if (a == 0) { // 0--9
+			return true;
+		}
+		if (b == 0) {//0 结尾的
+			return false;
+		}
+		while (a - b > 0) { // a 越来越小,b越来越大
+			b = b * 10 + a % 10;
+			a /= 10;
+		}
+		if (b - a > 0) { // 奇数个数
+			b /= 10;
+		}
+		return a == b;
+	}
 
 	/**
 	 * 8. String to Integer (atoi)
 	 * Implement atoi to convert a string to an integer.
 	 * @param str
 	 * @return
+	 * 
+	 *  * 
+	* Runtime: 4 ms   1047 / 1047 test cases passed
+	* Your runtime beats 35.97% of javasubmissions
 	 */
 	public int myAtoi(String str) {
 		if (null == str) {
