@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+/************************************************************************/
+/* The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+
+P   A   H   N
+A P L S I I G
+Y   I   R
+And then read line by line: 
+Write the code that will take a string and make this conversion given a number of rows:
+
+string convert(string text, int nRows);
+convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".                                               
+/************************************************************************/
+string convert(string s, int numRows) 
+{
+	if (1 >= numRows || numRows >= s.size())
+	{
+		return s;
+	}
+
+	vector<string> vc_str(numRows);
+
+	int row = 0;
+	int step = 1;
+	/*使用类型为string的vector保存每行字符串，注意step的变化：在row=最大行号时step需要回溯*/
+	for (int i = 0; i < s.size(); i++)
+	{
+		if (row == numRows-1)
+		{
+			step = -1;
+		}
+		if (row == 0)
+		{
+			step = 1;
+		}
+
+		vc_str[row]+=s[i];
+		row+= step;
+	}
+
+	string res;
+	for (int j = 0;j<numRows;j++)
+	{
+		res+=vc_str[j];
+	}
+	return res;
+
+}
+
+
+int main()
+{
+	cout<<"PAYPALISHIRING convert is: "  <<convert("PAYPALISHIRING",3)<<endl;
+
+	return 0;
+	
+}
