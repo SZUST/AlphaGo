@@ -1,0 +1,34 @@
+#include <iostream>
+#include <climits>
+using namespace std;
+
+int reverse(int x)
+{
+	long long result = 0;
+	if (0 == x)
+	{
+		return x;
+	}
+
+	while (x)
+	{
+		result = result*10 + x%10;
+		x/=10;
+	}
+
+	if (result > INT_MAX || result < INT_MIN)
+	{
+		return 0;
+	}
+
+	return (int)result;
+
+
+}
+
+int main()
+{
+	int res = reverse(1534236469);
+	cout<<res<<endl;
+	return 0;
+}
