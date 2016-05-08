@@ -1,0 +1,39 @@
+#include <iostream>
+#include <climits>
+
+using namespace std;
+
+bool isPalindrome(int x) 
+{
+	long long result = 0;
+	int tmp = x;
+	if (0 == x)
+	{
+		return true;
+	}
+
+	while (x)
+	{
+		result = result*10 + x%10;
+		x/=10;
+	}
+
+	if (result > INT_MAX || result < INT_MIN)
+	{
+		return 0;
+	}
+
+	int res = (int)result;
+
+	return (res>0) ?(tmp == res) : false;
+
+}
+
+
+int main()
+{
+    cout<< -2147447412 <<" isPalindrome "<<isPalindrome(-2147447412)<<endl;
+	cout<< 1000 <<" isPalindrome "<<isPalindrome(1000)<<endl;
+	return 0;
+	
+}
