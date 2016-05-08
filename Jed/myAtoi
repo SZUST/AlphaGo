@@ -1,0 +1,92 @@
+#include <iostream>
+#include <string>
+#include <ctype.h>
+#include <climits>
+
+using namespace std;
+
+
+int myAtoi(string str)
+{
+	const char* pstrTmp = str.c_str();
+	
+	if (NULL ==pstrTmp || *pstrTmp == '\0')
+	{
+		return 0;
+	}
+
+	while(isspace(*pstrTmp))
+	{
+		pstrTmp++;
+	}
+
+	bool isNeg = false;
+
+	int count = 0; //记录+-符合个数
+	while ('-'==*pstrTmp || '+'==*pstrTmp)
+	{
+		if ('-' == *pstrTmp)
+		{
+			isNeg = true;
+		}
+
+		pstrTmp++;
+		count++;
+				
+	}
+	
+	if (count > 1)
+	{
+		return 0;
+	}
+
+	long long result = 0;
+	int bitmapcnt = 0; //有效数字字符个数
+	while (isdigit(*pstrTmp)&&('\0' !=*pstrTmp))
+	{
+		result = result*10 + (*pstrTmp -'0');
+		pstrTmp++;
+		bitmapcnt++;
+	}
+
+	if (bitmapcnt>10)
+	{
+		return (isNeg == true)? INT_MIN : INT_MAX;
+	}
+
+
+	result = (isNeg == true)? -1*result: result;
+
+
+	if (result > INT_MAX)
+	{
+		return INT_MAX;
+	}
+	if (result <INT_MIN)
+	{
+		return INT_MIN;
+	}
+
+	return result;
+	
+}
+
+
+int main()
+{
+    printf("\"%s\" = %d =%d\n", "9223372036854775809", myAtoi("9223372036854775809"),atoi("9223372036854775809"));
+	printf("\"%s\" = %d =%d\n", "-+1", myAtoi("-+1"),atoi("-+1"));
+	printf("\"%s\" = %d\n", "1", myAtoi("1"));
+	printf("\"%s\" = %d\n", "123", myAtoi("123"));
+	printf("\"%s\" = %d\n", "   123", myAtoi("    123"));
+	printf("\"%s\" = %d\n", "+123", myAtoi("+123"));
+	printf("\"%s\" = %d\n", " -123", myAtoi(" -123"));
+	printf("\"%s\" = %d =%d\n", "123ABC", myAtoi("123ABC"),atoi("123ABC"));
+	printf("\"%s\" = %d\n", " abc123ABC", myAtoi(" abc123ABC"));
+	printf("\"%s\" = %d\n", "2147483647", myAtoi("2147483647"));
+	printf("\"%s\" = %d\n", "-2147483648", myAtoi("-2147483648"));
+	printf("\"%s\" = %d\n", "2147483648", myAtoi("2147483648"));
+	printf("\"%s\" = %d\n", "-2147483649", myAtoi("-2147483649"));
+	return 0;
+	
+}
