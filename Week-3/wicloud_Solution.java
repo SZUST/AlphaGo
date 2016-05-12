@@ -5,6 +5,8 @@
 
 package com.wicloud.alphago;
 
+import java.util.Arrays;
+
 /**
  * Week-3 LeetCode 习题
  *
@@ -19,6 +21,36 @@ package com.wicloud.alphago;
  */
 
 public class Solution3 {
+
+	/**
+	 * 14. Longest Common Prefix 
+	 * Write a function to find the longest common prefix string amongst an array of strings.
+	 * @param strs
+	 * @return 
+	 * 117 / 117 test cases passed.
+		Status: Accepted
+		Runtime: 3 ms
+	 * Your runtime beats 40.93% of javasubmissions
+	 */
+
+	public String longestCommonPrefix(String[] strs) {
+		if (0 == strs.length) {
+			return "";
+		}
+		Arrays.sort(strs);
+		String first = strs[0];
+		String last = strs[strs.length - 1];
+		int minLen = Math.min(first.length(), last.length());
+		StringBuffer sb = new StringBuffer("");
+		for (int i = 0; i < minLen; i++) {
+			if (first.charAt(i) == last.charAt(i)) {
+				sb.append(first.charAt(i));
+			} else {
+				break;
+			}
+		}
+		return sb.toString();
+	}
 
 	/**
 	 *  13. Roman to Integer
@@ -39,7 +71,7 @@ public class Solution3 {
 			return 0;
 		}
 		char[] arr = s.toCharArray();
-		int res = toInt(arr[arr.length - 1]);
+		int res = toInt(arr[arr.length - 1]); // 使用数组表示 更better
 		for (int i = arr.length - 1; i != 0; i--) {
 			if (toInt(arr[i]) > toInt(arr[i - 1])) {
 				res -= toInt(arr[i - 1]);
