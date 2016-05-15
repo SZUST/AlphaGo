@@ -25,7 +25,44 @@ import java.util.Map;
 public class Solution3 {
 
 	public static void main(String[] args) {
-		System.out.println(lengthOfLongestSubstring("abba"));
+
+	}
+
+	/**
+	 * 5. Longest Palindromic Substring  
+	 * Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000,
+	 *  and there exists one unique longest palindromic substring. 两边
+	 * @param  "abb"
+	 * @return 
+	 * 88 / 88 test cases passed.
+		Status: Accepted
+		Runtime: 75 ms    =============> String.charAt()
+	 * Your runtime beats 27.03% of javasubmissions.
+	 * 
+	 * 88 / 88 test cases passed.
+		Status: Accepted
+		Runtime: 42 ms	 ===============>toCharArray ,操作数组
+		Your runtime beats 41.37% of javasubmissions.
+	 */
+
+	public String longestPalindrome(String s) {
+		String res = "";
+		int len = s.length();
+		char[] arr = s.toCharArray(); // more faster
+		for (int i = 0; i < len; i++) {
+			int p = i, q = i;
+			while (q < len - 1 && arr[q] == arr[q + 1]) { //abbac   ，p 前面的b,q移动到后面的b.
+				q++;
+			}
+			while (p >= 0 && q < len && arr[p] == arr[q]) { //从中心向两边
+				if (res.length() < q - p + 1) {
+					res = s.substring(p, q + 1);
+				}
+				p--;
+				q++;
+			}
+		}
+		return res;
 	}
 
 	/**
