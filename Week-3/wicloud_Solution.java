@@ -6,6 +6,8 @@
 package com.wicloud.alphago;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Week-3 LeetCode 习题
@@ -21,6 +23,36 @@ import java.util.Arrays;
  */
 
 public class Solution3 {
+
+	public static void main(String[] args) {
+		System.out.println(lengthOfLongestSubstring("abba"));
+	}
+
+	/**
+	 * 3. Longest Substring Without Repeating Characters 
+	 * Given a string, find the length of the longest substring without repeating characters.
+	 * @param s
+	 * @return 
+	 * 982 / 982 test cases passed.
+		Status: Accepted
+		Runtime: 17 ms
+	 * Your runtime beats 56.00% of javasubmissions
+	 */
+
+	public static int lengthOfLongestSubstring(String s) {
+
+		char[] charArr = s.toCharArray();
+		int res = 0, begin = 0;
+		Map<Character, Integer> map = new HashMap<Character, Integer>();
+		for (int i = 0; i < charArr.length; i++) {
+			if (map.containsKey(charArr[i])) {
+				begin = Math.max(map.get(charArr[i]) + 1, begin); // 最后一个begin  “abba” 到a的时候，还是从b开始的 begin  
+			}
+			res = Math.max(res, i - begin + 1); // 存放结果
+			map.put(charArr[i], i);
+		}
+		return res;
+	}
 
 	/**
 	 * 14. Longest Common Prefix 
